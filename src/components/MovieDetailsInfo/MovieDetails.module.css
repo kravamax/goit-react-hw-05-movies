@@ -1,0 +1,8 @@
+.flex {
+  display: flex;
+  margin-top: 10px;
+}
+
+.infoBlock {
+  padding: 20px;
+}
