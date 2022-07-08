@@ -15,6 +15,7 @@ const MovieDetailsInfo = ({
         src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
         alt={title}
         width={250}
+        height={375}
       />
       <div className={s.infoBlock}>
         <h2>

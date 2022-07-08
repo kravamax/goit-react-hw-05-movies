@@ -1,5 +1,5 @@
 import { NavLink, useParams, Route, Routes, Outlet } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 
 import CastPage from './CastPage';
 import ReviewsPage from './ReviewsPage';
@@ -8,7 +8,7 @@ import * as moviesFetchAPI from '../../services/movies-api';
 import MovieDetailsInfo from '../MovieDetailsInfo';
 
 const MovieDetailsPage = () => {
-  const { movieId } = useParams(null);
+  const { movieId } = useParams();
   const [movie, setMovie] = useState('');
   const { title, name, poster_path, vote_average, overview, genres } = movie;
   let { release_date } = movie;
@@ -18,8 +18,6 @@ const MovieDetailsPage = () => {
   }
 
   useEffect(() => {
-    if (movieId === null) return;
-
     moviesFetchAPI.fetchMovieDetails(movieId).then(setMovie);
   }, [movieId]);
 
@@ -44,21 +42,13 @@ const MovieDetailsPage = () => {
       <div>Additional information: </div>
       <ul>
         <li>
-          <NavLink to={`/movies/${movieId}/cast`}>Cast</NavLink>
+          <NavLink to={`cast`}>Cast</NavLink>
         </li>
         <li>
-          <NavLink to={`/movies/${movieId}/reviews`}>Reviews</NavLink>
+          <NavLink to={`reviews`}>Reviews</NavLink>
         </li>
       </ul>
       <Outlet />
-
-      <Routes>
-        <Route path={`/movies/:${movieId}/cast`} element={<CastPage />}></Route>
-        <Route
-          path={`/movies/:${movieId}/reviews`}
-          element={<ReviewsPage />}
-        ></Route>
-      </Routes>
     </>
   );
 };
