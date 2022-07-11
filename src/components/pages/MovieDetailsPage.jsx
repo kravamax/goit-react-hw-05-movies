@@ -14,14 +14,17 @@ const MovieDetailsInfo = lazy(() => import('../MovieDetailsInfo'));
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState('');
-  const { title, name, poster_path, vote_average, overview, genres } = movie;
-  let { release_date } = movie;
+  const {
+    title,
+    name,
+    poster_path,
+    vote_average,
+    overview,
+    genres,
+    release_date,
+  } = movie;
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/movies';
-
-  if (release_date) {
-    release_date = release_date.slice(0, 4);
-  }
 
   useEffect(() => {
     moviesFetchAPI.fetchMovieDetails(movieId).then(setMovie);
@@ -33,6 +36,10 @@ const MovieDetailsPage = () => {
     return genres.map(genre => genre.name).join(', ');
   };
 
+  const getReleaseYear = () => {
+    return release_date ? `(${release_date.slice(0, 4)})` : '(Upcoming)';
+  };
+
   return (
     <>
       {movie && (
@@ -42,7 +49,7 @@ const MovieDetailsPage = () => {
             poster_path={poster_path}
             title={title}
             name={name}
-            release_date={release_date}
+            release_date={() => getReleaseYear()}
             vote_average={vote_average}
             overview={overview}
             getGenresList={() => getGenresList()}

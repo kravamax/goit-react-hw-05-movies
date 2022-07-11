@@ -24,7 +24,7 @@ const MovieDetailsInfo = ({
       />
       <div className={s.infoBlock}>
         <h2>
-          {title ? title : name} ({release_date})
+          {title ? title : name} {release_date()}
         </h2>
         <div>User score: {vote_average * 10}% </div>
         <h3>Overview</h3>
@@ -40,7 +40,7 @@ MovieDetailsInfo.propTypes = {
   poster_path: PropTypes.string,
   title: PropTypes.string,
   name: PropTypes.string,
-  release_date: PropTypes.string,
+  release_date: PropTypes.func,
   vote_average: PropTypes.number,
   overview: PropTypes.string,
   getGenresList: PropTypes.func,
