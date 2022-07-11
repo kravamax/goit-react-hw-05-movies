@@ -19,7 +19,7 @@ const CastPage = () => {
             <img
               src={
                 profile_path
-                  ? `https://image.tmdb.org/t/p/w500/${profile_path}`
+                  ? `https://image.tmdb.org/t/p/w500${profile_path}`
                   : `https://via.placeholder.com/150x225`
               }
               alt=""

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import s from './MovieDetails.module.css';
 
 const MovieDetailsInfo = ({
@@ -12,7 +13,11 @@ const MovieDetailsInfo = ({
   return (
     <div className={s.flex}>
       <img
-        src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+        src={
+          poster_path
+            ? `https://image.tmdb.org/t/p/w500${poster_path}`
+            : `https://via.placeholder.com/250x375`
+        }
         alt={title}
         width={250}
         height={375}
@@ -29,6 +34,16 @@ const MovieDetailsInfo = ({
       </div>
     </div>
   );
+};
+
+MovieDetailsInfo.propTypes = {
+  poster_path: PropTypes.string,
+  title: PropTypes.string,
+  name: PropTypes.string,
+  release_date: PropTypes.string,
+  vote_average: PropTypes.number,
+  overview: PropTypes.string,
+  getGenresList: PropTypes.func,
 };
 
 export default MovieDetailsInfo;

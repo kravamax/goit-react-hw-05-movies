@@ -28,6 +28,9 @@ const MoviesPage = () => {
   const onSubmit = event => {
     event.preventDefault();
 
+    if (queryName === event.target.search.value) {
+      return;
+    }
     if (query === '') {
       alert('You have to write something');
       return;

@@ -18,8 +18,11 @@ const ReviewsPage = () => {
       <ul>
         {reviews.map(({ author, content, id }) => (
           <li key={id}>
-            <p>Author: {author}</p>
+            <h3>Author:</h3>
+            <p> {author}</p>
+            <h3>Comment: </h3>
             <p>{content}</p>
+            <hr />
           </li>
         ))}
       </ul>
