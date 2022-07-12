@@ -1,13 +1,14 @@
 import { useState, useEffect, lazy, Suspense } from 'react';
 import { useNavigate, useLocation, useSearchParams } from 'react-router-dom';
 
-import * as moviesFetchAPI from '../../services/movies-api';
-import Form from '../Form';
-const MoviesList = lazy(() => import('../MoviesList'));
+import * as moviesFetchAPI from '../services/movies-api';
+import Form from '../components/Form';
+const MoviesList = lazy(() => import('../components/MoviesList'));
 
 const MoviesPage = () => {
   const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
+
   const [searchParams] = useSearchParams();
   const queryName = searchParams.get('search');
 
@@ -28,9 +29,9 @@ const MoviesPage = () => {
   const onSubmit = event => {
     event.preventDefault();
 
-    if (queryName === event.target.search.value) {
-      return;
-    }
+    // if (queryName === event.target.search.value) {
+    //   return;
+    // }
     if (query === '') {
       alert('You have to write something');
       return;

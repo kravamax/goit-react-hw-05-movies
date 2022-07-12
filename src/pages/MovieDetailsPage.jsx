@@ -7,9 +7,9 @@ import {
 } from 'react-router-dom';
 import { useState, useEffect, Suspense, lazy } from 'react';
 
-import * as moviesFetchAPI from '../../services/movies-api';
+import * as moviesFetchAPI from '../services/movies-api';
 
-const MovieDetailsInfo = lazy(() => import('../MovieDetailsInfo'));
+const MovieDetailsInfo = lazy(() => import('../components/MovieDetailsInfo'));
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
@@ -24,7 +24,7 @@ const MovieDetailsPage = () => {
     release_date,
   } = movie;
   const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/movies';
+  const backLinkHref = location.state?.from ?? '/';
 
   useEffect(() => {
     moviesFetchAPI.fetchMovieDetails(movieId).then(setMovie);
@@ -44,7 +44,9 @@ const MovieDetailsPage = () => {
     <>
       {movie && (
         <>
-          <Link to={backLinkHref}>Back to products</Link>
+          <Link to={backLinkHref}>
+            <button style={{ marginTop: '10px' }}>⬅️ Back</button>
+          </Link>
           <MovieDetailsInfo
             poster_path={poster_path}
             title={title}
@@ -58,10 +60,14 @@ const MovieDetailsPage = () => {
           <div>Additional information: </div>
           <ul>
             <li>
-              <NavLink to={`cast`}>Cast</NavLink>
+              <Link to="cast" state={{ from: backLinkHref }}>
+                Cast
+              </Link>
             </li>
             <li>
-              <NavLink to={`reviews`}>Reviews</NavLink>
+              <NavLink to="reviews" state={{ from: backLinkHref }}>
+                Reviews
+              </NavLink>
             </li>
           </ul>
           <Suspense fallback={<div>Load Additional information...</div>}>

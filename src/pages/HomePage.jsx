@@ -1,6 +1,6 @@
 import { useState, useEffect, lazy, Suspense } from 'react';
-import * as moviesFetchAPI from '../../services/movies-api';
-const MoviesList = lazy(() => import('../MoviesList'));
+import * as moviesFetchAPI from '../services/movies-api';
+const MoviesList = lazy(() => import('../components/MoviesList'));
 
 const HomePage = () => {
   const [films, setFilms] = useState('');
