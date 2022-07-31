@@ -1,5 +1,8 @@
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
+import s from './Form.module.css';
+import { BsSearch } from 'react-icons/bs';
+import { toast } from 'react-toastify';
 
 const Form = ({ query, onSearch }) => {
   const [input, setInput] = useState('');
@@ -17,21 +20,45 @@ const Form = ({ query, onSearch }) => {
 
     onSearch({ search: input });
 
-    if (query === '') {
-      alert('You have to write something');
+    if (query === '' || input === null) {
+      toast.warn('You have to write something', {
+        position: 'top-center',
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'dark',
+      });
       return;
     }
+
+    toast.success(`Results for ${input}`, {
+      position: 'top-center',
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'dark',
+    });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={s.form}>
       <input
         type="text"
         name="input"
         value={input || ''}
         onChange={onChangeInput}
+        className={s.searchInput}
+        placeholder="Enter movie name..."
       />
-      <button type="submit">Search</button>
+      <button type="submit" className={s.searchButton}>
+        <BsSearch />
+      </button>
     </form>
   );
 };

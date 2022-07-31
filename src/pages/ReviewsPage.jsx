@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-
+import s from './Pages.module.css';
 import * as moviesFetchAPI from '../services/movies-api';
 
 const ReviewsPage = () => {
@@ -16,15 +16,26 @@ const ReviewsPage = () => {
   const getReviewsList = () => {
     return (
       <ul>
-        {reviews.map(({ author, content, id }) => (
-          <li key={id}>
-            <h3>Author:</h3>
-            <p> {author}</p>
-            <h3>Comment: </h3>
-            <p>{content}</p>
-            <hr />
-          </li>
-        ))}
+        {reviews.map(
+          ({ author, content, id, author_details: { avatar_path } }) => (
+            <li key={id} className={s.reviewsContainer}>
+              <div className={s.reviewsContainerLeft}>
+                <img
+                  src={
+                    avatar_path.includes('www')
+                      ? `${avatar_path.slice(1)}`
+                      : `https://image.tmdb.org/t/p/w500${avatar_path}`
+                  }
+                  alt=""
+                  width={100}
+                />
+                <p> {author}:</p>
+              </div>
+
+              <p className={s.reviewsContainerRight}>{content}</p>
+            </li>
+          )
+        )}
       </ul>
     );
   };

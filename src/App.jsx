@@ -3,6 +3,9 @@ import { lazy, Suspense } from 'react';
 import Container from './components/Container';
 import AppBar from './components/AppBar';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const HomePage = lazy(() => import('./pages/HomePage'));
 const MoviesPage = lazy(() => import('./pages/MoviesPage'));
 const MovieDetailsPage = lazy(() => import('./pages/MovieDetailsPage'));
@@ -26,6 +29,7 @@ const App = () => {
           <Route path="*" element={<NotFoundPage />}></Route>
         </Routes>
       </Suspense>
+      <ToastContainer />
     </Container>
   );
 };

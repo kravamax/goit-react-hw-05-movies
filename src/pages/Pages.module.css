@@ -1,0 +1,124 @@
+.moviePageContainer {
+  padding: 15px;
+}
+
+.buttonToBack {
+  padding: 6px 10px;
+  border-radius: 1px;
+  color: #fff;
+  background: #333;
+  border: none;
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+
+  cursor: pointer;
+}
+
+.buttonToBack:focus {
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1),
+    0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  outline: 0;
+}
+
+.buttonToBack svg {
+  position: relative;
+  top: 2px;
+  margin-right: 3px;
+}
+
+.additionalList {
+  display: flex;
+}
+
+.additionalItem {
+  /* padding: 10px;
+  width: 70px; */
+}
+
+.additionalItemLink {
+  display: block;
+  width: 100px;
+  padding: 10px;
+  color: black;
+  text-align: center;
+}
+
+.additionalItemLink:hover {
+  background-color: black;
+  color: #fff;
+}
+
+.castItem {
+  display: flex;
+}
+
+.photoCell {
+  width: 70px;
+  margin: 0;
+
+  background-color: #cccccc;
+}
+
+.nameCell {
+  width: 250px;
+  margin: 0;
+
+  background-color: #b4b4b4;
+}
+
+.characterCell {
+  width: 250px;
+  margin: 0;
+
+  background-color: #8c8c8c;
+}
+
+.photoCell,
+.nameCell,
+.characterCell {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #fff;
+}
+
+.tableHead {
+  padding: 5px;
+}
+
+.activeLink {
+  background-color: black;
+  color: #fff;
+}
+
+.reviewsContainer {
+  display: flex;
+
+  margin: 20px;
+  border-bottom: 1px solid;
+  padding-bottom: 20px;
+}
+
+.reviewsContainer:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.reviewsContainer p {
+  margin: 0;
+}
+
+.reviewsContainerLeft {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 100px;
+}
+
+.reviewsContainerRight {
+  padding-left: 30px;
+}

@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 
 import * as moviesFetchAPI from '../services/movies-api';
 import Form from '../components/Form';
+import { toast } from 'react-toastify';
 const MoviesList = lazy(() => import('../components/MoviesList'));
 
 const MoviesPage = () => {
@@ -16,7 +17,16 @@ const MoviesPage = () => {
 
     moviesFetchAPI.fetchMoviesQuery(query).then(({ results }) => {
       if (!results.length) {
-        return alert('Not found anything :(');
+        return toast.error('Not found anything :(', {
+          position: 'top-center',
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'dark',
+        });
       }
       setMovies(results);
     });

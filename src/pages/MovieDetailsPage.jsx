@@ -8,7 +8,8 @@ import {
 import { useState, useEffect, Suspense, lazy } from 'react';
 
 import * as moviesFetchAPI from '../services/movies-api';
-
+import s from './Pages.module.css';
+import { BsArrowLeftCircle } from 'react-icons/bs';
 const MovieDetailsInfo = lazy(() => import('../components/MovieDetailsInfo'));
 
 const MovieDetailsPage = () => {
@@ -43,9 +44,11 @@ const MovieDetailsPage = () => {
   return (
     <>
       {movie && (
-        <>
+        <div className={s.moviePageContainer}>
           <Link to={backLinkHref}>
-            <button style={{ marginTop: '10px' }}>⬅️ Back</button>
+            <button className={s.buttonToBack}>
+              <BsArrowLeftCircle /> Back
+            </button>
           </Link>
           <MovieDetailsInfo
             poster_path={poster_path}
@@ -58,14 +61,26 @@ const MovieDetailsPage = () => {
           />
           <hr />
           <div>Additional information: </div>
-          <ul>
-            <li>
-              <Link to="cast" state={{ from: backLinkHref }}>
+          <ul className={s.additionalList}>
+            <li className={s.additionalItem}>
+              <NavLink
+                to="cast"
+                state={{ from: backLinkHref }}
+                className={({ isActive }) =>
+                  [s.additionalItemLink] + (isActive ? ` ${s.activeLink}` : '')
+                }
+              >
                 Cast
-              </Link>
+              </NavLink>
             </li>
-            <li>
-              <NavLink to="reviews" state={{ from: backLinkHref }}>
+            <li className={s.additionalItem}>
+              <NavLink
+                to="reviews"
+                state={{ from: backLinkHref }}
+                className={({ isActive }) =>
+                  [s.additionalItemLink] + (isActive ? ` ${s.activeLink}` : '')
+                }
+              >
                 Reviews
               </NavLink>
             </li>
@@ -73,7 +88,7 @@ const MovieDetailsPage = () => {
           <Suspense fallback={<div>Load Additional information...</div>}>
             <Outlet />
           </Suspense>
-        </>
+        </div>
       )}
     </>
   );

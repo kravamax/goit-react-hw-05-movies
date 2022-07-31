@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-
+import s from './Pages.module.css';
 import * as moviesFetchAPI from '../services/movies-api';
 
 const CastPage = () => {
@@ -13,9 +13,14 @@ const CastPage = () => {
 
   const getCastsList = () => {
     return (
-      <ul>
+      <ul className={s.castList}>
+        <li className={s.castItem}>
+          <p className={s.photoCell}>photo</p>
+          <p className={s.nameCell}>name</p>
+          <p className={s.characterCell}>role </p>
+        </li>
         {cast.map(({ profile_path, name, character, id }) => (
-          <li key={id}>
+          <li key={id} className={s.castItem}>
             <img
               src={
                 profile_path
@@ -23,10 +28,11 @@ const CastPage = () => {
                   : `https://via.placeholder.com/150x225`
               }
               alt=""
-              width={150}
+              width={70}
+              className={s.photoCell}
             />
-            <p>name: {name}</p>
-            <p>character: {character}</p>
+            <p className={s.nameCell}>{name}</p>
+            <p className={s.characterCell}>{character}</p>
           </li>
         ))}
       </ul>
