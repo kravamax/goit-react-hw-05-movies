@@ -6,6 +6,8 @@ import AppBar from './components/AppBar';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import { Oval } from 'react-loader-spinner';
+
 const HomePage = lazy(() => import('./pages/HomePage'));
 const MoviesPage = lazy(() => import('./pages/MoviesPage'));
 const MovieDetailsPage = lazy(() => import('./pages/MovieDetailsPage'));
@@ -17,7 +19,27 @@ const App = () => {
   return (
     <Container>
       <AppBar />
-      <Suspense fallback={<h2>Main Loading...</h2>}>
+      <Suspense
+        fallback={
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+            }}
+          >
+            <Oval
+              height={80}
+              width={80}
+              color="black"
+              visible={true}
+              ariaLabel="oval-loading"
+              secondaryColor="grey"
+              strokeWidth={2}
+              strokeWidthSecondary={2}
+            />
+          </div>
+        }
+      >
         <Routes>
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/movies" element={<MoviesPage />}></Route>

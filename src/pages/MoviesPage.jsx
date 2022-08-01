@@ -4,6 +4,8 @@ import { useSearchParams } from 'react-router-dom';
 import * as moviesFetchAPI from '../services/movies-api';
 import Form from '../components/Form';
 import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Oval } from 'react-loader-spinner';
 const MoviesList = lazy(() => import('../components/MoviesList'));
 
 const MoviesPage = () => {
@@ -35,7 +37,27 @@ const MoviesPage = () => {
   return (
     <>
       <Form query={query} onSearch={setSearch} />
-      <Suspense fallback={<h2>Loading movies...</h2>}>
+      <Suspense
+        fallback={
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+            }}
+          >
+            <Oval
+              height={80}
+              width={80}
+              color="black"
+              visible={true}
+              ariaLabel="oval-loading"
+              secondaryColor="grey"
+              strokeWidth={2}
+              strokeWidthSecondary={2}
+            />
+          </div>
+        }
+      >
         {movies && <MoviesList movies={movies} />}
       </Suspense>
     </>
