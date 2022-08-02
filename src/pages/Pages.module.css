@@ -9,17 +9,17 @@
   background: #333;
   border: none;
   box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1);
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
 
+  transition: all 0.25s linear;
   cursor: pointer;
 }
 
+.buttonToBack:hover,
 .buttonToBack:focus {
-  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1),
-    0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
-  outline: 0;
+  color: #333;
+  background: #fff;
+
+  outline: 1px solid #000;
 }
 
 .buttonToBack svg {
@@ -32,21 +32,24 @@
   display: flex;
 }
 
-.additionalItem {
-  /* padding: 10px;
-  width: 70px; */
+.additionalItem:not(:last-child) {
+  margin-right: 10px;
 }
 
 .additionalItemLink {
   display: block;
   width: 100px;
   padding: 10px;
-  color: black;
+  color: #333;
   text-align: center;
+
+  border: 1px solid #333;
+
+  transition: all 0.25s linear;
 }
 
 .additionalItemLink:hover {
-  background-color: black;
+  background-color: #333;
   color: #fff;
 }
 

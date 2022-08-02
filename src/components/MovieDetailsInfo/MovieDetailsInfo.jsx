@@ -21,16 +21,18 @@ const MovieDetailsInfo = ({
         alt={title}
         width={250}
         height={375}
+        className={s.posterFilm}
       />
+      <div></div>
       <div className={s.infoBlock}>
-        <h2>
+        <h2 className={s.titleFilm}>
           {title ? title : name} {release_date()}
         </h2>
-        <div>User score: {vote_average * 10}% </div>
+        <h4>Film rating: {vote_average}</h4>
         <h3>Overview</h3>
-        <div>{overview}</div>
+        <div className={s.textBackground}>{overview}</div>
         <h3>Genres</h3>
-        <div>{getGenresList()}</div>
+        <div className={s.textBackground}>{getGenresList()}</div>
       </div>
     </div>
   );

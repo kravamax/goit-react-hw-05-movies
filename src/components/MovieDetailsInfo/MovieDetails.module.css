@@ -5,4 +5,24 @@
 
 .infoBlock {
   padding: 20px;
+  padding-top: 0;
+}
+
+.posterFilm {
+  position: relative;
+}
+
+.titleFilm,
+.textBackground {
+  background-color: white;
+  border-radius: 5px;
+}
+
+.titleFilm {
+  margin: 0;
+  padding: 15px 10px;
+}
+
+.textBackground {
+  padding: 5px;
 }

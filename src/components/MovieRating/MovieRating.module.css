@@ -1,0 +1,18 @@
+.filmRating {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+
+  padding-right: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  background-color: #fff;
+  color: #000;
+}
+
+.filmRating svg {
+  position: relative;
+  top: 4px;
+  width: 20px;
+  height: 20px;
+}
