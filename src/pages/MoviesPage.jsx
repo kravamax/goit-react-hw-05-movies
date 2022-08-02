@@ -6,6 +6,7 @@ import Form from '../components/Form';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Oval } from 'react-loader-spinner';
+import { toastConfig } from '../components/Form/toastConfig';
 const MoviesList = lazy(() => import('../components/MoviesList'));
 
 const MoviesPage = () => {
@@ -19,18 +20,10 @@ const MoviesPage = () => {
 
     moviesFetchAPI.fetchMoviesQuery(query).then(({ results }) => {
       if (!results.length) {
-        return toast.error('Not found anything :(', {
-          position: 'top-center',
-          autoClose: 1500,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: 'dark',
-        });
+        return toast.error(`Not found anything for "${query}"`, toastConfig());
       }
       setMovies(results);
+      toast.success(`Results for ${query}`, toastConfig());
     });
   }, [query]);
 

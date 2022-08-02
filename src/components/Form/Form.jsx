@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import s from './Form.module.css';
 import { BsSearch } from 'react-icons/bs';
 import { toast } from 'react-toastify';
+import { toastConfig } from './toastConfig';
 
 const Form = ({ query, onSearch }) => {
   const [input, setInput] = useState('');
@@ -18,32 +19,17 @@ const Form = ({ query, onSearch }) => {
   const handleSubmit = event => {
     event.preventDefault();
 
-    onSearch({ search: input });
-
-    if (query === '' || input === null) {
-      toast.warn('You have to write something', {
-        position: 'top-center',
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'dark',
-      });
+    if (input === null) {
+      toast.warn('You have to write something', toastConfig());
       return;
     }
 
-    toast.success(`Results for ${input}`, {
-      position: 'top-center',
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'dark',
-    });
+    if (input === query) {
+      return;
+    }
+    onSearch({ search: input });
+
+    // toast.success(`Results for ${input}`, toastConfig());
   };
 
   return (
@@ -51,7 +37,7 @@ const Form = ({ query, onSearch }) => {
       <input
         type="text"
         name="input"
-        value={input || ''}
+        value={input || ' '}
         onChange={onChangeInput}
         className={s.searchInput}
         placeholder="Enter movie name..."
