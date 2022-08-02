@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkreact_homework_template=self.webpackChunkreact_homework_template||[]).push([[691],{691:function(e,t,a){a.r(t),a.d(t,{default:function(){return s}});var n="MovieRating_filmRating__vw8I8",r=a(728),i=a(184),s=function(e){var t=e.rating;return(0,i.jsxs)("span",{className:n,children:[(0,i.jsx)(r.CvE,{})," ",t>0?t.toFixed(1):"No rating"]})}}}]);
+//# sourceMappingURL=691.bc60c18a.chunk.js.map
